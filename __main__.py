@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-from helpers.parser import parser
+from helpers.parser import initialize_parser
 __version__ = '1.1'
 __author__ = 'Sergio Pereira'
 

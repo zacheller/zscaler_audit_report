@@ -35,7 +35,7 @@ def write_csv(csv_report):
     return
 
 
-def get_audit_report(api_key, user, password, cloud='zscalerthree.net'):
+def get_audit_report(api_key, user, password, cloud):
     """
     Main function to obtain audit reports
     :param api_key: type string. API key
