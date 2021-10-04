@@ -1,8 +1,10 @@
+import pdb
+
 from helpers.http_helper import HttpHelper
 import time
 
 
-class ZiaTalker(object):
+class ZsTalker(object):
     """
     Zscaler API talker
     Documentation: https://help.zscaler.com/zia/api
@@ -108,7 +110,6 @@ class ZiaTalker(object):
         if actionTypes:
             payload.update(actionTypes=actionTypes)
 
-        print(payload)
         response = self.hp_http.post_call(url, payload=payload, cookies={'JSESSIONID': self.jsessionid},
-                                          error_handling=True)
+                                          )
         return response

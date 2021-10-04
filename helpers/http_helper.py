@@ -1,3 +1,5 @@
+import pdb
+
 import requests
 
 
@@ -48,6 +50,7 @@ class HttpHelper(object):
         """
         Method to perform an HTTP POST call
         :param url: type string: url
+        :param headers: type dictionary.
         :param payload: type json. HTTP payload
         :param cookies: type string: cookies
         :return: response
@@ -77,6 +80,8 @@ class HttpHelper(object):
         """
         if response.status_code in [200, 201, 202, 204]:
             return
+        elif response.status_code == 400:
+            raise ValueError(f'{response.status_code} :{response.json()}')
         elif response.status_code == 401:
             raise ValueError(f'{response.status_code} :Session is not authenticated or timed out')
         elif response.status_code == 403:

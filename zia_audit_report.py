@@ -1,8 +1,14 @@
-from helpers.zia_api_calls import ZiaTalker
+from helpers.zia_api_calls import ZsTalker
 import time
+from datetime import datetime
 
 
 def check_report_status(zs):
+    """
+    Function to check the status of the report.
+    :param zs: instance of zsTalker
+    return boolean
+    """
     count = 0
     complete = False
     while (complete == False and count < 4):
@@ -23,11 +29,25 @@ def write_csv(csv_report):
     :param csv_report:
     :return: none
     """
+    date = datetime.now().strftime("%Y_%m_%d-%I:%M:%S_%p")
+    with open(f'audit_{date}.csv', 'bw') as f:
+        f.write(csv_report)
+    return
 
 
 def get_audit_report(api_key, user, password, cloud='zscalerthree.net'):
-    zs = ZiaTalker(f'zsapi.{cloud}')
+    """
+    Main function to obtain audit reports
+    :param api_key: type string. API key
+    :param user: type string. User
+    :param password: type string. Password
+    :return: none
+    """
+    zs = ZsTalker(f'zsapi.{cloud}')
     zs.authenticate(api_key, user, password)
-    zs.add_auditlogEntryReport()
-    check_report_status(zs.list_auditlogEntryReport())
-    zs.download_auditlogEntryReport()
+    endtime = time.time()
+    start = endtime - 24 * 3600
+    zs.add_auditlogEntryReport(startTime=start * 1000, endTime=endtime * 1000)
+    check_report_status(zs)
+    report = zs.download_auditlogEntryReport()
+    write_csv(report.content)
