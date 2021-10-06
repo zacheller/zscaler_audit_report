@@ -14,7 +14,7 @@ pip install -r requirements.txt
 ```
 python zs_audit_report -h
 ```
-# docker instructions
+# Docker instructions
 ```
 docker build -t audit .  
 docker run -it audit bash
@@ -22,6 +22,6 @@ python audit -h
 ```
 # Credits
 ```
-Sergio Pereira Zscaler
-Professional Services
+Sergio Pereira 
+Zscaler Professional Services
 ```
