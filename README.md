@@ -18,7 +18,7 @@ python zs_audit_report -h
 ```
 docker build -t audit .  
 docker run -it audit bash
-python audit -h
+python app -h
 ```
 # Credits
 ```
