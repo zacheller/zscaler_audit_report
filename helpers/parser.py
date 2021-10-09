@@ -9,7 +9,7 @@ def initialize_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--default',
                         action='store_true',
-                        help='Get audit report for last 24 and save result in csv file')
+                        help='get audit report for last 24 hours and save result in CSV file')
     parser.add_argument('-a', '--api_key',
                         help='ZIA API key',
                         required=True)
@@ -24,7 +24,7 @@ def initialize_parser():
                         required=True)
     parser.add_argument('-v', '--version',
                         action='store_true',
-                        help='Get audit report for last 24 and save result in csv file')
+                        help='show the version information and exit')
 
     args = parser.parse_args()
     plugin_selection(args)
