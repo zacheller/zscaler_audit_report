@@ -35,18 +35,26 @@ def write_csv(csv_report):
     return
 
 
-def get_audit_report(api_key, user, password, cloud):
+def get_audit_report(api_key, user, password, cloud, start_time, end_time=None):
     """
     Main function to obtain audit reports
     :param api_key: type string. API key
     :param user: type string. User
     :param password: type string. Password
+    :param cloud: type string. Zscaler cloud
+    :param start_time: time in mintes
+    :param end_time: time in minutes
     :return: none
     """
+    if start_time:
+        endtime = time.time()
+        start = endtime - (start_time * 60)
+
+    else:
+        print('convert')
+
     zs = ZsTalker(f'zsapi.{cloud}')
     zs.authenticate(api_key, user, password)
-    endtime = time.time()
-    start = endtime - 24 * 3600
     zs.add_auditlogEntryReport(startTime=start * 1000, endTime=endtime * 1000)
     check_report_status(zs)
     report = zs.download_auditlogEntryReport()
