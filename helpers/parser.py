@@ -7,12 +7,9 @@ def initialize_parser():
     parser = argparse.ArgumentParser()
     # Global options
     parser = argparse.ArgumentParser()
-    parser.add_argument('-24', '--last-24',
+    parser.add_argument('-d', '--default',
                         action='store_true',
-                        help='Get audit report for last 24 hours (1440 min) and save result in csv file')
-    parser.add_argument('-5', '--last-5',
-                        action='store_true',
-                        help='Get audit report for last 5 minutes and save result in csv file')
+                        help='get audit report for last 24 hours and save result in CSV file')
     parser.add_argument('-a', '--api_key',
                         help='ZIA API key',
                         required=True)
@@ -28,8 +25,6 @@ def initialize_parser():
     parser.add_argument('-v', '--version',
                         action='store_true',
                         help='show the version information and exit')
-    parser.add_argument('-rlog', '--remote_logging',
-                        help='Remote syslog server information. Format IP address:protocol:port Example X.X.X.X:TCP:513')
 
     args = parser.parse_args()
     plugin_selection(args)
@@ -41,18 +36,8 @@ def plugin_selection(args):
     :param args: parer arguments
     :return:
     """
-    if args.last_24:
-        if args.remote_logging:
-            get_audit_report(args.api_key, args.user, args.password, args.cloud, start_time=1400,
-                             rlog=args.remote_logging)
-        else:
-            get_audit_report(args.api_key, args.user, args.password, args.cloud, start_time=1400)
-    elif args.last_5:
-        if args.remote_logging:
-            get_audit_report(args.api_key, args.user, args.password, args.cloud, start_time=5, rlog=args.remote_logging)
-        else:
-            get_audit_report(args.api_key, args.user, args.password, args.cloud, start_time=5)
-
+    if args.default:
+        get_audit_report(args.api_key, args.user, args.password, args.cloud)
     elif args.version:
         print('zs_audit_report version 1.1')
     else:
