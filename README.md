@@ -14,6 +14,11 @@ pip install -r requirements.txt
 ```
 python zs_audit_report -h
 ```
+```
+python zs_audit_report -5 -a APIKEY -u USER -p PASSWORD  -c CLOUD -rlog IP:PROTOCOL:PORT
+python zs_audit_report -24 -a APIKEY -u USER -p PASSWORD  -c CLOUD -rlog IP:PROTOCOL:PORT
+
+```
 # Docker instructions
 ```
 docker build -t audit .  

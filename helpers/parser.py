@@ -29,6 +29,8 @@ def initialize_parser():
     parser.add_argument('-v', '--version',
                         action='store_true',
                         help='Get audit report for last 24 and save result in csv file')
+    parser.add_argument('-rlog', '--remote_logging',
+                        help='Remote syslog server information. Format IP address:protocol:port Example X.X.X.X:TCP:513')
 
     args = parser.parse_args()
     plugin_selection(args)
@@ -41,10 +43,17 @@ def plugin_selection(args):
     :return:
     """
     if args.last_24:
-        get_audit_report(args.api_key, args.user, args.password, args.cloud,start_time=1400)
-
+        if args.remote_logging:
+            get_audit_report(args.api_key, args.user, args.password, args.cloud, start_time=1400,
+                             rlog=args.remote_logging)
+        else:
+            get_audit_report(args.api_key, args.user, args.password, args.cloud, start_time=1400)
     elif args.last_5:
-        get_audit_report(args.api_key, args.user, args.password, args.cloud, start_time=5)
+        if args.remote_logging:
+            get_audit_report(args.api_key, args.user, args.password, args.cloud, start_time=5, rlog=args.remote_logging)
+        else:
+            get_audit_report(args.api_key, args.user, args.password, args.cloud, start_time=5)
+
 
     elif args.version:
         print('zs_audit_report version 1.1')
