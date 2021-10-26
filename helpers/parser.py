@@ -1,5 +1,4 @@
 import argparse
-import pdb
 import sys
 from zia_audit_report import get_audit_report
 
@@ -28,7 +27,7 @@ def initialize_parser():
                         required=True)
     parser.add_argument('-v', '--version',
                         action='store_true',
-                        help='Get audit report for last 24 and save result in csv file')
+                        help='show the version information and exit')
     parser.add_argument('-rlog', '--remote_logging',
                         help='Remote syslog server information. Format IP address:protocol:port Example X.X.X.X:TCP:513')
 
