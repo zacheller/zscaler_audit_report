@@ -1,6 +1,10 @@
 # Description
 
-The Zscaler Internet Access (ZIA) audit report script uses Zscaler's Cloud Service API to download an audit log report for a specified timeframe and saves the response in CSV format. With the `-d` or `--default` flag, the script will create an audit log report for the 24 hours previous to script execution. 
+The Zscaler Internet Access (ZIA) audit report script uses Zscaler's Cloud Service API to download an audit log report 
+for a specified timeframe and saves the response in CSV format. With the `-5` or `-24` flag, the script will create an 
+audit log report for the 5 minutes or 24 hours previous to script execution. 
+Moreover, the script can also send audit scripts to a sys log server specified.
+
 > It is recommended to retrieve the API key, username, and password from a password management system via API.
 
 ---
