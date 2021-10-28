@@ -17,7 +17,7 @@ def initialize_parser():
                         help='ZIA API key',
                         required=True)
     parser.add_argument('-u', '--user',
-                        help='ZIA username (emailaddress)',
+                        help='ZIA username (email address)',
                         required=True)
     parser.add_argument('-p', '--password',
                         help='ZIA password',
@@ -29,7 +29,8 @@ def initialize_parser():
                         action='store_true',
                         help='show the version information and exit')
     parser.add_argument('-rlog', '--remote_logging',
-                        help='Remote syslog server information. Format IP address:protocol:port Example X.X.X.X:TCP:513')
+                        help='Remote syslog server information. Format IP address:protocol:port '
+                             'Example X.X.X.X:PROTOCOL:PORT  or FQDN:PROTOCOL:PORT')
 
     args = parser.parse_args()
     plugin_selection(args)
