@@ -1,7 +1,6 @@
 # Description
 
-Zscaler Internet Access audit report creates and downloads an audit log report in csv format  for the specified time. 
-By default from last 24 hours since the script was executed
+Zscaler Internet Access audit report creates and downloads an audit log report in CSV format for the specified time frame (defaults to previous 24 hours).
 
 # Installation ( Virtual Environment)
 ```
